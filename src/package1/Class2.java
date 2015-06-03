@@ -23,6 +23,24 @@ public class Class2 extends JFrame{
     JComboBox   cbSearch;
     JLabel      lFlag;
 
+
+    public String[] getCountries() {
+        File folder = new File("data/");
+
+        String[] files = folder.list(new FilenameFilter() {
+            @Override public boolean accept(File folder, String name) {
+                return name.endsWith(".txt");
+            }
+
+        });
+        String[] countries = new String[files.length+1];
+        countries[0] = "";
+        for (int i=0; i<files.length; i++) {
+            countries[i+1] = files[i].replace(".txt", "");
+        }
+        return countries;
+    }
+
     public class eHandler implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             JComboBox box = (JComboBox)e.getSource();
@@ -72,3 +90,7 @@ public class Class2 extends JFrame{
     }
 
 }
+
+
+
+
