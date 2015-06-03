@@ -23,6 +23,19 @@ public class Class2 extends JFrame{
     JComboBox   cbSearch;
     JLabel      lFlag;
 
+    public class eHandler implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            JComboBox box = (JComboBox)e.getSource();
+            String item = (String)box.getSelectedItem();
+            try {
+                lShow.setText(new Scanner(new File("data/"+item+".txt"), "UTF-8").useDelimiter("\\Z").next());
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            };
+            lFlag.setIcon(new ImageIcon("data/flags/"+item+".png"));
+        }
+    }
+
     public Class2(String s){
         super(s); //title
         setLayout(null);
@@ -30,6 +43,8 @@ public class Class2 extends JFrame{
         cbSearch = new JComboBox(/*getCountries()*/);
         cbSearch.setVisible(true);
         cbSearch.setBounds(50,50,600,50);
+
+        eHandler handler = new eHandler();
 
         lShow = new JTextArea("Выберите страну");
         lShow.setLineWrap(true);
@@ -50,7 +65,9 @@ public class Class2 extends JFrame{
         add(cbSearch);
         add(lFlag);
 
-       /* cbSearch.addActionListener(/*handler);*/
+       cbSearch.addActionListener(handler);
+
+
 
     }
 
