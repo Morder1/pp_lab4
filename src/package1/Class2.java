@@ -58,7 +58,7 @@ public class Class2 extends JFrame{
         super(s); //title
         setLayout(null);
 
-        cbSearch = new JComboBox(/*getCountries()*/);
+        cbSearch = new JComboBox(getCountries());
         cbSearch.setVisible(true);
         cbSearch.setBounds(50,50,600,50);
 
